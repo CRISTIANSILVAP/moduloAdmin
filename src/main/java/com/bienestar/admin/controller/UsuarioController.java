@@ -4,6 +4,7 @@ import com.bienestar.admin.model.Usuario;
 import com.bienestar.admin.service.UsuarioService;
 import com.bienestar.admin.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -85,4 +86,11 @@ public class UsuarioController {
         usuarioService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/correo")
+    public ResponseEntity<String> getCorreoById(@RequestParam String userId) {
+        return new ResponseEntity<>(usuarioService.getCorreoById(userId), HttpStatus.OK);
+    }
+
+
+
 }

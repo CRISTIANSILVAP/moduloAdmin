@@ -68,4 +68,9 @@ public class UsuarioService {
     public void eliminar(String id) {
         usuarioRepository.deleteById(id);
     }
+
+    public String getCorreoById(String userId){
+        Usuario user=usuarioRepository.findById(userId).get();
+        return user.getCorreo();
+    }
 }
