@@ -70,7 +70,7 @@ public class UsuarioService {
     }
 
     public String getCorreoById(String userId){
-        Usuario user=usuarioRepository.findById(userId).get();
+        Usuario user=usuarioRepository.findUserById(userId);
         return user.getCorreo();
     }
 }

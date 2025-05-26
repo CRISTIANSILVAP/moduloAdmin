@@ -86,9 +86,9 @@ public class UsuarioController {
         usuarioService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping("/correo")
-    public ResponseEntity<String> getCorreoById(@RequestParam String userId) {
-        return new ResponseEntity<>(usuarioService.getCorreoById(userId), HttpStatus.OK);
+    @GetMapping("/correo/{id}")
+    public ResponseEntity<String> getCorreoById(@PathVariable String id) {
+        return new ResponseEntity<>(usuarioService.getCorreoById(id), HttpStatus.OK);
     }
 
 
