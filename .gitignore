@@ -15,3 +15,9 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# Variables de entorno locales
+.env
+.env.local
+.env.*.local
+

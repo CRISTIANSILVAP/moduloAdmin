@@ -18,6 +18,9 @@ public class JwtUtil {
     @Autowired
     private UsuarioService userService;
 
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public String generarToken(String idUsuario, String rol) {
@@ -31,7 +34,7 @@ public class JwtUtil {
                 .withClaim("id", user.getId())
                 .withClaim("role", user.getRole().toString())
                 .withExpiresAt(expirationTime)
-                .sign(Algorithm.HMAC256("secret"));
+                .sign(Algorithm.HMAC256(jwtSecret));
         return token;
     }
 }

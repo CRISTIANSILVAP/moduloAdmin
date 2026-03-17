@@ -35,7 +35,8 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    private final String SECRET = "secret";
+    @Value("${jwt.secret}")
+    private String secret;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -49,7 +50,7 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = authHeader.substring(7); // Extraemos el token sin "Bearer "
 
             try {
-                var verifier = JWT.require(Algorithm.HMAC256( SECRET)).build();
+                var verifier = JWT.require(Algorithm.HMAC256(secret)).build();
                 var decodedJWT = verifier.verify(token);
 
                 String userId = decodedJWT.getClaim("id").asString();
