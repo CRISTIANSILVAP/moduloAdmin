@@ -1,5 +1,6 @@
 package com.bienestar.admin.controller;
 
+import com.bienestar.admin.controller.dto.ActualizarUsuarioRequest;
 import com.bienestar.admin.model.Usuario;
 import com.bienestar.admin.service.UsuarioService;
 import com.bienestar.admin.util.JwtUtil;
@@ -76,8 +77,23 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable String id, @RequestBody Usuario datos) {
-        Usuario actualizado = usuarioService.actualizar(id, datos);
+    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable String id, @RequestBody ActualizarUsuarioRequest datos) {
+        Usuario datosActualizacion = new Usuario();
+        datosActualizacion.setCorreo(datos.getCorreo());
+        datosActualizacion.setTelefono(datos.getTelefono());
+        datosActualizacion.setNombreCompleto(datos.getNombreCompleto());
+        datosActualizacion.setCedula(datos.getCedula());
+        datosActualizacion.setCelular(datos.getCelular());
+        datosActualizacion.setContactoEmergencia(datos.getContactoEmergencia());
+        datosActualizacion.setGenero(datos.getGenero());
+        datosActualizacion.setFechaNacimiento(datos.getFechaNacimiento());
+        datosActualizacion.setEps(datos.getEps());
+        datosActualizacion.setRh(datos.getRh());
+        datosActualizacion.setEstadoCivil(datos.getEstadoCivil());
+        datosActualizacion.setTipoUsuario(datos.getTipoUsuario());
+        datosActualizacion.setRol(datos.getRol());
+
+        Usuario actualizado = usuarioService.actualizar(id, datosActualizacion);
         return ResponseEntity.ok(actualizado);
     }
 

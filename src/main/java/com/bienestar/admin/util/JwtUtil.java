@@ -37,4 +37,12 @@ public class JwtUtil {
                 .sign(Algorithm.HMAC256(jwtSecret));
         return token;
     }
+
+    public BCryptPasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
+
+    public void setPasswordEncoder(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 }
